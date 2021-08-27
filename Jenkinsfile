@@ -16,5 +16,16 @@ pipeline {
                 '''
             }
         }
+        stage('run') {
+            steps {
+                sh '''
+                #!/bin/bash
+                source $WORKSPACE/miniconda/etc/profile.d/conda.sh
+                conda activate miniconda/envs/test/
+                echo 'Inside run'
+                python test.py
+                '''
+            }
+        }
     }
 }
