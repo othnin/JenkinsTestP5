@@ -15,7 +15,7 @@ pipeline {
                     echo ls $WORKSPACE/miniconda
                     conda config --set always_yes yes --set changeps1 no
                     conda update -q conda
-                    conda env create -f environment.yaml
+                    conda env create -f environment.yaml --force
 
                 '''
             }
