@@ -1,4 +1,4 @@
-name: test
+name: JenkinsTestP5
 dependencies:
   - numpy
   - pandas
