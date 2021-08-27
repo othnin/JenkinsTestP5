@@ -25,7 +25,7 @@ pipeline {
                 sh '''
                 #!/bin/bash
                 source $WORKSPACE/miniconda/etc/profile.d/conda.sh
-                conda activate miniconda/envs/test/
+                conda activate miniconda/envs/JenkinsTestP5/
                 echo 'Inside run'
                 python test.py
                 '''
