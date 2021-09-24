@@ -8,8 +8,8 @@ pipeline {
                     #!/bin/bash
                     echo $PWD
                     condaEnvName=`sed -n 's/name: //p' environment.yaml`
-                    echo $WORKSPACE/miniconda/$condaEnvName
-                    if [ ! -d $WORKSPACE/miniconda/$condaEnvName ]
+                    echo $HOME/miniconda3/envs/$condaEnvName
+                    if [ ! -d $HOME/miniconda3/envs/$condaEnvName ]
                     then
                         if [ ! -d $WORKSPACE/miniconda ]
                         then
