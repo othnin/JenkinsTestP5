@@ -7,15 +7,20 @@ pipeline {
                 sh ''' 
                     #!/bin/bash
                     echo $PWD
-                    if [ ! -d $WORKSPACE/miniconda ]
+                    condaEnvName=`sed -n 's/name: //p' environment.yaml`
+                    echo $WORKSPACE/miniconda/$condaEnvName
+                    if [ ! -d $WORKSPACE/miniconda/$condaEnvName ]
                     then
-                        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -nv -O miniconda.sh
-                        bash miniconda.sh -b -p $WORKSPACE/miniconda
+                        if [ ! -d $WORKSPACE/miniconda ]
+                        then
+                            wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -nv -O miniconda.sh
+                            bash miniconda.sh -b -p $WORKSPACE/miniconda
+                        fi
+                        echo ls $WORKSPACE/miniconda
+                        conda config --set always_yes yes --set changeps1 no
+                        conda update -q conda
+                        conda env create -f environment.yaml
                     fi
-                    echo ls $WORKSPACE/miniconda
-                    conda config --set always_yes yes --set changeps1 no
-                    conda update -q conda
-                    conda env create -f environment.yaml 
 
                 '''
             }
